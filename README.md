@@ -3,7 +3,7 @@ NHS Hackday Cardiff 2023
 
 ## Model 
 
-[https://sti.bmj.com/content/95/2/115](STI transmission model)
+[STI transmission model](https://sti.bmj.com/content/95/2/115)
 
 ## Data
 
