@@ -3,7 +3,8 @@ NHS Hackday Cardiff 2023
 
 ## Data 
 
-**smartphone_usage_percentages** describes the percentage of the UK population using smartphones between 2012-2023.
+# `smartphone_usage_percentages`
+This table describes the percentage of the UK population using smartphones between 2012-2023.
 
 |Year|16-24|25-34|35-44|45-54|55-64|65+|
 |----|-----|-----|-----|-----|-----|---|
@@ -17,6 +18,3 @@ NHS Hackday Cardiff 2023
 |2019|98   |98   |95   |95   |80   |62 |
 |2020|98   |98   |98   |95   |87   |65 |
 
-## Data
-
-Understanding Society [synthetic data](https://github.com/MRC-CSO-SPHSU/mortality_module) for singles based on year 2011 records (not publicly available at the moment).
