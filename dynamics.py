@@ -119,7 +119,7 @@ class STI:
                 1 - self.h_s) * self.get_Is(age, sexual_risk)
 
     def get_S(self, age: int, sexual_risk: int) -> float:
-        return self.population.loc[self.population['age'] == age]['count']
+        return self.population.loc[age, ['S']].values[0]
 
     def update_S(self, age: int, sexual_risk: int):
         pass
@@ -131,7 +131,7 @@ class STI:
         # TODO check for mu with no indices
 
     def get_E(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['E']].values[0]
 
     def update_E(self, age: int, sexual_risk: int):
         pass
@@ -142,7 +142,7 @@ class STI:
             age, sexual_risk)
 
     def get_Ia(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['Ia']].values[0]
 
     def update_Ia(self, age: int, sexual_risk: int):
         pass
@@ -153,7 +153,7 @@ class STI:
             age, sexual_risk)
 
     def get_Is(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['Is']].values[0]
 
     def update_Is(self, age: int, sexual_risk: int) -> None:
         pass
@@ -164,7 +164,7 @@ class STI:
             age, sexual_risk) - self.xi * self.get_W(age, sexual_risk)
 
     def get_W(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['W']].values[0]
 
     def update_W(self, age: int, sexual_risk: int) -> float:
         pass
@@ -179,7 +179,7 @@ class STI:
             age, sexual_risk)
 
     def get_R(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['R']].values[0]
 
     def update_R(self, age: int, sexual_risk: int):
         pass
@@ -191,7 +191,7 @@ class STI:
             age, sexual_risk)
 
     def get_E2(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['E2']].values[0]
 
     def update_E2(self, age: int, sexual_risk: int):
         pass
@@ -202,7 +202,7 @@ class STI:
             age, sexual_risk)
 
     def get_Ia2(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['Ia2']].values[0]
 
     def update_Ia2(self, age: int, sexual_risk: int) -> None:
         pass
@@ -213,7 +213,7 @@ class STI:
             age, sexual_risk)
 
     def get_Is2(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['Is2']].values[0]
 
     def update_Is2(self, age: int, sexual_risk: int) -> None:
         pass
@@ -224,7 +224,7 @@ class STI:
             age, sexual_risk) - self.xi * self.get_W2(age, sexual_risk)
 
     def get_W2(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[age, ['W2']].values[0]
 
     def update_W2(self, age: int, sexual_risk: int) -> None:
         pass
