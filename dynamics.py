@@ -79,6 +79,17 @@ class STI:
         self.population['Is2'] = 0
         self.population['W2'] = 0
 
+        self.population['delta_S'] = 0
+        self.population['delta_E'] = 0
+        self.population['delta_Ia'] = 0
+        self.population['delta_Is'] = 0
+        self.population['delta_W'] = 0
+        self.population['delta_R'] = 0
+        self.population['delta_E2'] = 0
+        self.population['delta_Ia2'] = 0
+        self.population['delta_Is2'] = 0
+        self.population['delta_W2'] = 0
+
         _n = {'age': [16, 17, 18, 19,
                       20, 21, 22, 23, 24,
                       25, 26, 27, 28, 29,
@@ -121,8 +132,8 @@ class STI:
     def get_S(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['S']].values[0]
 
-    def update_S(self, age: int, sexual_risk: int):
-        self.population.loc[age, ['S']] += int(self.delta_S(age, sexual_risk))
+    def update_delta_S(self, age: int, sexual_risk: int):
+        self.population.loc[age, ['delta_S']] = int(self.delta_S(age, sexual_risk))
 
     def delta_E(self, age: int, sexual_risk: int) -> float:
         return self.get_lambda(age, sexual_risk) * self.get_S(age,
@@ -133,8 +144,8 @@ class STI:
     def get_E(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['E']].values[0]
 
-    def update_E(self, age: int, sexual_risk: int):
-        self.population.loc[age, ['E']] += int(self.delta_E(age, sexual_risk))
+    def update_delta_E(self, age: int, sexual_risk: int):
+        self.population.loc[age, ['delta_E']] = int(self.delta_E(age, sexual_risk))
 
     def delta_Ia(self, age: int, sexual_risk: int):
         return self.nu * self.phi * self.get_E(age,
@@ -144,8 +155,8 @@ class STI:
     def get_Ia(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['Ia']].values[0]
 
-    def update_Ia(self, age: int, sexual_risk: int):
-        self.population.loc[age, ['Ia']] += int(self.delta_Ia(age, sexual_risk))
+    def update_delta_Ia(self, age: int, sexual_risk: int):
+        self.population.loc[age, ['delta_Ia']] = int(self.delta_Ia(age, sexual_risk))
 
     def delta_Is(self, age: int, sexual_risk: int):
         return (1 - self.nu) * self.phi * self.get_E(age,
@@ -155,8 +166,8 @@ class STI:
     def get_Is(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['Is']].values[0]
 
-    def update_Is(self, age: int, sexual_risk: int) -> None:
-        self.population.loc[age, ['Is']] += int(self.delta_Is(age, sexual_risk))
+    def update_delta_Is(self, age: int, sexual_risk: int) -> None:
+        self.population.loc[age, ['delta_Is']] = int(self.delta_Is(age, sexual_risk))
 
     def delta_W(self, age: int, sexual_risk: int) -> float:
         return self.gamma_a * self.h_a * self.get_Ia(age,
@@ -166,8 +177,8 @@ class STI:
     def get_W(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['W']].values[0]
 
-    def update_W(self, age: int, sexual_risk: int):
-        self.population.loc[age, ['W']] += int(self.delta_W(age, sexual_risk))
+    def update_delta_W(self, age: int, sexual_risk: int):
+        self.population.loc[age, ['delta_W']] = int(self.delta_W(age, sexual_risk))
 
     def delta_R(self, age: int, sexual_risk: int) -> float:
         return self.xi * (self.get_W(age, sexual_risk) + self.get_W2(age,
@@ -181,8 +192,8 @@ class STI:
     def get_R(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['R']].values[0]
 
-    def update_R(self, age: int, sexual_risk: int):
-        self.population.loc[age, ['R']] += int(self.delta_R(age, sexual_risk))
+    def update_delta_R(self, age: int, sexual_risk: int):
+        self.population.loc[age, ['delta_R']] = int(self.delta_R(age, sexual_risk))
 
     def delta_E2(self, age: int, sexual_risk: int) -> float:
         return (1 - self.alpha) * self.get_lambda(age,
@@ -193,8 +204,8 @@ class STI:
     def get_E2(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['E2']].values[0]
 
-    def update_E2(self, age: int, sexual_risk: int):
-        self.population.loc[age, ['E2']] += int(self.delta_E2(age, sexual_risk))
+    def update_delta_E2(self, age: int, sexual_risk: int):
+        self.population.loc[age, ['delta_E2']] = int(self.delta_E2(age, sexual_risk))
 
     def delta_Ia2(self, age: int, sexual_risk: int) -> float:
         return self.nu * self.phi * self.get_E2(age,
@@ -204,8 +215,8 @@ class STI:
     def get_Ia2(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['Ia2']].values[0]
 
-    def update_Ia2(self, age: int, sexual_risk: int) -> None:
-        self.population.loc[age, ['Ia2']] += int(self.delta_Ia2(age, sexual_risk))
+    def update_delta_Ia2(self, age: int, sexual_risk: int) -> None:
+        self.population.loc[age, ['delta_Ia2']] = int(self.delta_Ia2(age, sexual_risk))
 
     def delta_Is2(self, age: int, sexual_risk: int) -> float:
         return (1 - self.nu) * self.phi * self.get_E2(age,
@@ -215,8 +226,8 @@ class STI:
     def get_Is2(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['Is2']].values[0]
 
-    def update_Is2(self, age: int, sexual_risk: int) -> None:
-        self.population.loc[age, ['Is2']] += int(self.delta_Is2(age, sexual_risk))
+    def update_delta_Is2(self, age: int, sexual_risk: int) -> None:
+        self.population.loc[age, ['delta_Is2']] = int(self.delta_Is2(age, sexual_risk))
 
     def delta_W2(self, age: int, sexual_risk: int) -> float:
         return self.gamma_a * self.h_a * self.get_Ia2(age,
@@ -226,8 +237,8 @@ class STI:
     def get_W2(self, age: int, sexual_risk: int) -> float:
         return self.population.loc[age, ['W2']].values[0]
 
-    def update_W2(self, age: int, sexual_risk: int) -> None:
-        self.population.loc[age, ['W2']] += int(self.delta_W2(age, sexual_risk))
+    def update_delta_W2(self, age: int, sexual_risk: int) -> None:
+        self.population.loc[age, ['delta_W2']] = int(self.delta_W2(age, sexual_risk))
 
     def get_l(self, age: int) -> float:
         return self.l.loc[age, 'spa_rate']
@@ -274,3 +285,14 @@ class STI:
         return 1 - np.power(1 - self.p,
                             self.m_is * self.get_n(age, sexual_risk) * self.tau)
 
+    def update_population(self):
+        self.population['S'] += self.population['delta_S']
+        self.population['E'] += self.population['delta_E']
+        self.population['Ia'] += self.population['delta_Ia']
+        self.population['Is'] += self.population['delta_Is']
+        self.population['W'] += self.population['delta_W']
+        self.population['R'] += self.population['delta_R']
+        self.population['E2'] += self.population['delta_E2']
+        self.population['Ia2'] += self.population['delta_Ia2']
+        self.population['Is2'] += self.population['delta_Is2']
+        self.population['W2'] += self.population['delta_W2']
