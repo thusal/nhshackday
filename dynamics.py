@@ -119,7 +119,7 @@ class STI:
                 1 - self.h_s) * self.get_Is(age, sexual_risk)
 
     def get_S(self, age: int, sexual_risk: int) -> float:
-        pass
+        return self.population.loc[self.population['age'] == age]['count']
 
     def update_S(self, age: int, sexual_risk: int):
         pass
